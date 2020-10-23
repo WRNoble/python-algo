@@ -10,9 +10,45 @@ def merge_sort(list):
 
     return merge(left, right)
 
-    def split(list):
-        mid = len(list)//2
-        left = list[:mid]
-        right = list[mid:]
+def split(list):
+    mid = len(list)//2
+    left = list[:mid]
+    right = list[mid:]
 
-        return left, right
+    return left, right
+
+def merge(left, right):
+    l = []
+    i = 0
+    j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            l.append(left[i])
+            i += 1
+        else:
+            l.append(right[j])
+            j += 1
+
+    while i < len(left):
+        l.append(left[i])
+        i += 1
+
+    while j < len(right):
+        l.append(right[j])
+        j += 1
+
+    return l
+
+def verify_sorted(list):
+    n = len(list)
+
+    if n == 0 or n == 1:
+        return True
+
+    return list[0] < list[1] and verify_sorted(list[1:])
+
+alist = [10, 7, 2, 9, 3, 8, 1, 4, 6, 5]
+l = merge_sort(alist)
+print(verify_sorted(alist))
+print(verify_sorted(l))
