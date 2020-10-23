@@ -1,11 +1,12 @@
-class Node:
-    data = None
-    next_node = None
+def merge_sort(list):
 
-    def __init__(self, data):
-        self.data = data
 
-    def __repr__(self):
-        return "<Node data: %s>" % self.data
+    if len(list) <= 1:
+        return list
 
-class LinkedList:
+    left_half, right_half = split(list)
+    left = merge_sort(left_half)
+    right = merge_sort(right_half)
+
+    return merge(left, right)
+    
